@@ -1,0 +1,46 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<br>
+<center>
+    {% for i in lis %}
+    {% for k,v in i.items %}
+    <div class="btn-group m-3">
+        <button type="button" class="btn btn-primary dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{k}}
+        </button>
+        <div class="dropdown-menu">
+            {% for x in v %}
+
+                <!-- <a class="dropdown-item" href="#">{{x}}</a> -->
+                <form method="POST" action="{% url 'city' %}">
+                    {% csrf_token %}
+                    <input class="form-control mr-sm-2" name="city" type="hidden" value={{x}}>
+                    <button class="btn dropdown-item" type="submit">{{x}}</button>
+                </form>
+
+            {% endfor %}
+        </div>
+    </div> 
+    {% endfor %}
+    {% endfor %}
+</center>
+<br>
+
+<center>
+    <button type="button" class="btn btn-success btn-lg" disabled>&emsp;景&emsp;点&emsp;推&emsp;荐&emsp;列&emsp;表&emsp;：</button>
+    <br>
+    <br>
+{% for x in com %}
+<form method="POST" action="{% url 'city' %}">
+    {% csrf_token %}
+    <input name="city" type="hidden" value={{x.景点}}>
+    <button type="submit" class="btn btn-outline-success btn-lg btn-block" mr-5><span class="float-left">{{x.景点}}</span><span>天气情况:&emsp;{{x.天气}}&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;气温:&emsp;{{x.气温}}</span><span class="float-right">旅游指数:{{x.旅游指数}}</span></button>
+</form>
+    <br>
+{% endfor %}
+
+</center>
+
+    
+{% endblock %}

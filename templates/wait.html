@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正在加载中...</title>
+    <style type="text/css">
+        .box{
+            width:300px;
+            height:125px;
+            border:1px solid #FFFFFF;
+            margin:200px auto 0;
+        }
+
+        .box p{
+            text-align: center;
+            width:100%;
+            float:left;
+            /*p标签默认有样式*/
+            margin:0;
+            padding:0;
+        }
+
+        .box div{
+            width:30px;
+            height:70px;
+            margin:15px;
+            float: left;
+            background-color: hotpink;
+            border-radius:10px;
+        }
+
+        .box div:nth-child(1){
+            background-color: #007bff;
+            /*缩、放 这是两次，所以是2*/
+            /*animation:loading 0.5s ease 0s 2 alternate;*/
+            animation: loading 0.5s ease 0s infinite alternate;
+        }
+        .box div:nth-child(2){
+            background-color: #28a745;
+            animation: loading 0.5s ease 0.1s infinite alternate;
+        }
+        .box div:nth-child(3){
+            background-color: #00e6ff;
+            animation: loading 0.5s ease 0.2s infinite alternate;
+        }
+        .box div:nth-child(4){
+            background-color: #00ff66;
+            animation: loading 0.5s ease 0.3s infinite alternate;
+        }
+        .box div:nth-child(5){
+            background-color: gold;
+            animation: loading 0.5s ease 0.4s infinite alternate;
+        }
+
+        @keyframes loading{
+            from{
+                /*缩放y轴*/
+                transform:scaleY(1)
+            }
+
+            to{
+                transform: scaleY(0.5);
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <h3 style="text-align:center">loading...</h3>
+    </div>
+    <script language="javascript" type="text/javascript">
+        window.location.href='/home';
+    </script>
+</body>
+</html>

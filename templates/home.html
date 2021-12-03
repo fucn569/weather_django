@@ -1,0 +1,84 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="bd-example">  
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" data-interval="2000">
+        <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
+        </ol>
+        <div class="carousel-inner">
+        <div class="carousel-item active ">
+            <img src="{{i_1}}" class="d-block w-100 style="width:100%; height:100%"">
+            <div class="carousel-caption d-none d-md-block">
+            <h5>{{i_1t}}</h5>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="{{i_2}}" class="d-block w-100 style="width:100%; height:100%"">
+            <div class="carousel-caption d-none d-md-block">
+            <h5>{{i_2t}}</h5>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            {% load static %}
+            <img src="{% static "picture.jpg" %}" class="d-block w-100 ">
+            <div class="carousel-caption d-none d-md-block text-body">
+            <h5>词云图</h5>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="{{i_3}}" class="d-block w-100 style="width:100%; height:100%"">
+            <div class="carousel-caption d-none d-md-block">
+            <h5>{{i_3t}}</h5>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="{{i_4}}" class="d-block w-100 style="width:100%; height:100%"">
+            <div class="carousel-caption d-none d-md-block">
+            <h5>{{i_4t}}</h5>
+            </div>
+        </div>
+        
+    </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+        </a>
+    </div>
+    </div>
+
+    <br>
+        <div class="card-columns">
+            {% for x in api %}
+            
+                <div class="card border-primary mb-3 text-center max-width: 18rem;">
+                    <img class="card-img-top" src="{{x.图片}}" alt="Card image cap">
+                    <div class="card-body text-success">
+                        <form method="POST" action="{% url 'city' %}">
+                            {% csrf_token %}
+                            <input name="city" type="hidden" value={{x.城市}}>
+                            <button type="submit" class="btn btn-outline-success btn-lg">{{x.城市}}</button>
+                        </form>
+                        <br>
+                    <p class="card-text">温度:{{x.温度}}℃&emsp;天气:{{x.天气}}&emsp;体感温度:{{x.体感温度}}℃<br>湿度:{{x.湿度}}%&emsp;&emsp;降水量:{{x.降水量}}mm<br>风向:{{x.风向}}&emsp;&emsp;风力:{{x.风力}}</p>
+                    <p class="card-text"><small class="text-muted">更新时间:&emsp;&emsp;{{x.更新时间}}</small></p>
+                </div>
+                
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

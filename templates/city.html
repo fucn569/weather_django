@@ -1,0 +1,57 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+    {% if nf %}
+        <div class="container">
+            <br>
+            <h1 class="text-center">{{nf}}</h1>
+        </div>
+    {% else %}
+    {% if city %}
+        <button type="button" class="btn btn-primary btn-lg float-right">{{city}}</button>
+        <br>
+    {% endif %}
+    <div class="container">
+        <center>
+        {% autoescape off %}
+            {{body}}
+        {% endautoescape %}
+        </center>
+    {% if not nf_2 %}
+        <div class="alert alert-success" role="alert">
+            <h1 class="alert-heading text-center font-weight-bold">{{dic.城市}}</h1>
+            <hr>
+            <h5 class="text-center">温度:{{dic.温度}}℃&emsp;&emsp;天气:{{dic.天气}}&emsp;&emsp;体感温度:{{dic.体感温度}}℃&emsp;&emsp;湿度:{{dic.湿度}}%<br><br>降水量:{{dic.降水量}}mm&emsp;风向:{{dic.风向}}&emsp;&emsp;风力:{{dic.风力}}&emsp;&emsp;气压:{{dic.气压}}hpa</h5>
+            <br>
+            <hr>
+            <p class="mb-0">更新时间:&emsp;{{dic.更新时间}}</p>
+        </div>
+    </div>
+    {% else %}
+    {% endif %}
+    {% endif %}
+
+    {% if lis %}
+    <br>
+    <br>
+    <button type="button" class="btn btn-primary btn-lg btn-block" disabled>周&emsp;边&emsp;景&emsp;点</button>
+    <br>
+    <center>
+        <div class="row">
+            {% for x in lis %}
+            <div class="col-sm-4"><div class="p-3 btn btn-outline-success">
+                <a class='text-success' href={{x.链接}}><span class="float-left">{{x.景点}}</span>
+                &emsp;
+                <!-- {% load static %}
+                <img src="{% static "q.png" %}"> -->
+                <span class="float-right">气温:{{x.温度}}</span></a></div><br /><br />
+            </div>
+            {% endfor %}
+
+        </div>
+    </center>
+    {% endif %}
+
+
+{% endblock %}
