@@ -273,7 +273,7 @@ def getimagefor_home(name):
                 pic=link.find(name='img').attrs['src']
             # 图片链接结尾rw4是缩略图，rw14是原图，加上这一步则获取原图，但会使主页加载更慢
             # 建议先将图片爬取到本地使用静态文件传入，参考词云图的引入方法
-            # pic=pic[:-1]+'14'
+            pic=pic[:-1]+'14'
             return pic
 
 # 获取轮播图
